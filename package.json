@@ -1,38 +1,68 @@
 {
-	"name": "rr-7",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "react-router build && node netlify/prepare.js",
-		"dev": "react-router dev",
-		"start": "netlify serve",
-		"typecheck": "react-router typegen && tsc --build --noEmit"
-	},
-	"dependencies": {
-		"@netlify/functions": "2.8.2",
-		"@react-router/node": "^7.0.1",
-		"isbot": "^5.1.17",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"react-router": "^7.0.1"
-	},
-	"devDependencies": {
-		"@mjackson/node-fetch-server": "0.3.0",
-		"@react-router/dev": "^7.0.1",
-		"@svgr/rollup": "^8.1.0",
-		"@types/express": "^5.0.0",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
-		"autoprefixer": "^10.4.20",
-		"cross-env": "^7.0.3",
-		"express": "^4.21.1",
-		"postcss": "^8.4.49",
-		"sass": "^1.81.0",
-		"tailwindcss": "^3.4.15",
-		"terser": "^5.36.0",
-		"typescript": "^5.6.3",
-		"vite": "^5.4.11",
-		"vite-plugin-checker": "^0.8.0",
-		"vite-tsconfig-paths": "^5.1.2"
-	}
+  "name": "rr-7",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && react-router build && node netlify/prepare.js",
+    "dev": "react-router dev",
+    "start": "netlify serve",
+    "typecheck": "react-router typegen && tsc --build --noEmit",
+    "lint": "eslint '*/**/*.{js,ts,jsx,tsx}' --fix"
+  },
+  "dependencies": {
+    "@netlify/functions": "2.8.2",
+    "@react-router/node": "^7.0.1",
+    "isbot": "^5.1.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@mjackson/node-fetch-server": "0.3.0",
+    "@react-router/dev": "^7.0.1",
+    "@svgr/rollup": "^8.1.0",
+    "@types/express": "^5.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/parser": "^8.16.0",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import-x": "^4.4.3",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "express": "^5.0.1",
+    "globals": "^15.12.0",
+    "postcss": "^8.4.49",
+    "prettier": "3.4.1",
+    "sass": "^1.81.0",
+    "tailwindcss": "^3.4.15",
+    "terser": "^5.36.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.16.0",
+    "vite": "^6.0.1",
+    "vite-plugin-checker": "^0.8.0",
+    "vite-tsconfig-paths": "^5.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

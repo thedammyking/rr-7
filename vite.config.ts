@@ -4,29 +4,62 @@ import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
+import svgr from '@svgr/rollup';
+import checker from 'vite-plugin-checker';
 
-export default defineConfig(({ isSsrBuild }) => ({
-	build: {
-		rollupOptions: isSsrBuild
-			? {
-					input: './server/app.ts',
-			  }
-			: undefined,
-	},
+export default defineConfig(({ isSsrBuild, mode }) => {
+	const isProduction = mode === 'production';
+	return {
+		build: {
+			cssMinify: isProduction,
+			minify: isProduction ? 'terser' : false,
+			rollupOptions: {
+				input: isSsrBuild ? './server/app.ts' : undefined,
+				output: {
+					manualChunks: {},
+				},
+				treeshake: isProduction,
+			},
+		},
+		define: {
+			global: 'window',
+		},
+		css: {
+			postcss: {
+				plugins: [tailwindcss, autoprefixer],
+			},
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler',
+				},
+			},
+		},
+		plugins: [
+			checker({
+				typescript: true,
+				//TODO:  eslint: {
+				// 	lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+				// },
+			}),
+			reactRouter(),
+			tsconfigPaths(),
 
-	css: {
-		postcss: {
-			plugins: [tailwindcss, autoprefixer],
+			svgr({
+				typescript: true,
+				prettier: false,
+				svgo: false,
+				titleProp: true,
+				ref: true,
+			}),
+		],
+		resolve: {
+			alias: {
+				'@': path.resolve(__dirname, './src'),
+			},
 		},
-	},
-	plugins: [reactRouter(), tsconfigPaths()],
-	resolve: {
-		alias: {
-			'@': path.resolve(__dirname, './src'),
+		server: {
+			port: 3000,
+			open: true,
 		},
-	},
-	server: {
-		port: 3000,
-		open: true,
-	},
-}));
+	};
+});

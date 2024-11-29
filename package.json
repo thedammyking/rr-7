@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && react-router build && node netlify/prepare.js",
+    "build": "run-s typecheck build:react-router build:netlify-prepare",
+    "build:react-router": "react-router build",
+    "build:netlify-prepare": "node netlify/prepare.js",
     "dev": "react-router dev",
     "start": "netlify serve",
     "typecheck": "react-router typegen && tsc --build --noEmit",
@@ -39,6 +41,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "express": "^5.0.1",
     "globals": "^15.12.0",
+    "npm-run-all2": "^7.0.1",
     "postcss": "^8.4.49",
     "prettier": "3.4.1",
     "sass": "^1.81.0",

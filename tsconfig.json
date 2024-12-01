@@ -29,7 +29,8 @@
     ".react-router/types/**/*",
     "vite-env.d.ts",
     "server",
-    "react-router.config.ts"
+    "react-router.config.ts",
+    "tailwind.config.ts"
   ],
   "exclude": ["build", "node_modules", ".netlify", ".react-router", "public"]
 }

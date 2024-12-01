@@ -14,7 +14,7 @@ import tsEslint from 'typescript-eslint';
 export default [
   // Ignore
   {
-    ignores: ['build', 'node_modules', '.netlify', '.react-router', 'public']
+    ignores: ['build', 'node_modules', '.netlify', '.react-router', 'public', 'dist']
   },
 
   // Default
@@ -138,10 +138,10 @@ export default [
           groups: [
             // Packages `react` related packages come first.
             ['^react', '^@?\\w'],
-            // Side effect imports.
-            ['^\\u0000'],
             // Node.js builtins prefixed with `node:`.
             ['^node:'],
+            // Side effect imports.
+            ['^\\u0000'],
             // Packages.
             // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
             ['^@?\\w'],

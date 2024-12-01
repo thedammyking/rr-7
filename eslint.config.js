@@ -10,6 +10,8 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 
+import tailwind from 'eslint-plugin-tailwindcss';
+
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   // Ignore
@@ -205,6 +207,18 @@ export default [
           alwaysTryTypes: true,
           project: './tsconfig.json'
         }
+      }
+    }
+  },
+
+  // Tailwind
+  ...tailwind.configs['flat/recommended'],
+  {
+    settings: {
+      tailwindcss: {
+        callees: ['cn', 'classnames', 'clsx', 'ctl'],
+        config: 'tailwind.config.js',
+        removeDuplicates: true
       }
     }
   },

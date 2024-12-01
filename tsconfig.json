@@ -28,7 +28,8 @@
     ".eslintrc.config.js",
     ".react-router/types/**/*",
     "vite-env.d.ts",
-    "server"
+    "server",
+    "react-router.config.ts"
   ],
   "exclude": ["build", "node_modules", ".netlify", ".react-router", "public"]
 }
